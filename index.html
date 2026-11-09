@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Mianxiang — Face Reading</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Noto+Serif+SC:wght@400;600;900&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="styles.css">
+</head>
+<body>
+<div class="bg-ornament" aria-hidden="true"></div>
+
+<header class="site-header">
+  <div class="header-seal">面相</div>
+  <div class="header-text">
+    <h1>Mianxiang</h1>
+    <p class="subtitle">Traditional Chinese Face Reading · 中国传统面相学</p>
+  </div>
+</header>
+
+<main>
+  <section id="upload-section" class="panel upload-panel">
+    <div id="drop-zone" class="drop-zone" tabindex="0" role="button" aria-label="Upload a photo of a face">
+      <div class="drop-zone-inner">
+        <svg class="upload-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+          <circle cx="12" cy="9" r="3.2"/>
+          <path d="M5.5 19c1.2-3 3.6-4.5 6.5-4.5s5.3 1.5 6.5 4.5"/>
+          <circle cx="12" cy="12" r="10"/>
+        </svg>
+        <p class="drop-title">Drop a photo here, or click to choose</p>
+        <p class="drop-hint">A clear, front-facing photo works best. Good light, neutral expression, hair off the forehead.</p>
+      </div>
+      <input type="file" id="file-input" accept="image/*" hidden>
+    </div>
+    <p class="privacy-note">
+      <svg viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="2"><rect x="5" y="11" width="14" height="9" rx="2"/><path d="M8 11V7a4 4 0 0 1 8 0v4"/></svg>
+      Your photo never leaves this device — all analysis runs locally in your browser.
+    </p>
+  </section>
+
+  <section id="loading-section" class="panel loading-panel" hidden>
+    <div class="spinner"></div>
+    <p id="loading-text">Loading the face model…</p>
+  </section>
+
+  <section id="error-section" class="panel error-panel" hidden>
+    <p id="error-text"></p>
+    <button id="error-retry" class="btn">Try another photo</button>
+  </section>
+
+  <section id="results-section" hidden>
+    <div class="results-grid">
+      <div class="panel image-panel">
+        <div class="canvas-wrap">
+          <canvas id="face-canvas"></canvas>
+        </div>
+        <div class="overlay-legend">
+          <label class="toggle"><input type="checkbox" id="toggle-courts" checked> Three Courts 三停</label>
+          <label class="toggle"><input type="checkbox" id="toggle-points" checked> Feature points</label>
+        </div>
+        <div class="share-row">
+          <button id="share-card" class="btn">
+            <svg viewBox="0 0 24 24" width="15" height="15" fill="none" stroke="currentColor" stroke-width="2"><circle cx="18" cy="5" r="3"/><circle cx="6" cy="12" r="3"/><circle cx="18" cy="19" r="3"/><path d="M8.6 10.7l6.8-4.4M8.6 13.3l6.8 4.4"/></svg>
+            Share result
+          </button>
+          <button id="copy-text" class="btn btn-secondary">Copy reading</button>
+        </div>
+        <button id="new-photo" class="btn btn-secondary">Read another face</button>
+      </div>
+
+      <div class="readings-col">
+        <div class="panel element-panel" id="element-card"></div>
+        <div class="panel courts-panel" id="courts-card"></div>
+      </div>
+    </div>
+
+    <div class="panel summary-panel" id="summary-card"></div>
+
+    <h2 class="section-heading"><span>五官</span> The Five Features</h2>
+    <div id="features-grid" class="features-grid"></div>
+
+    <h2 class="section-heading"><span>阴阳</span> Balance &amp; Symmetry</h2>
+    <div id="symmetry-grid" class="features-grid"></div>
+
+    <h2 class="section-heading"><span>十二宫</span> Palaces of the Face</h2>
+    <div id="palaces-grid" class="palaces-grid"></div>
+
+    <h2 class="section-heading"><span>他山之镜</span> Other Mirrors</h2>
+    <p class="section-note">The same face, read through three other historical traditions.</p>
+    <div id="traditions-grid" class="traditions-grid"></div>
+  </section>
+</main>
+
+<footer class="site-footer">
+  <p><strong>A note on face reading.</strong> Mianxiang (面相) is a folk tradition from Chinese culture, over two thousand years old, offered here as cultural exploration and entertainment. It has no scientific basis — facial features do not determine character, fortune, or destiny. Enjoy it the way you'd enjoy a tea-leaf reading.</p>
+</footer>
+
+<script type="module" src="app.js"></script>
+</body>
+</html>
